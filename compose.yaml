@@ -2,6 +2,8 @@ services:
   ccbb-backend:
     build:
       context: ./Backend
+      secrets:
+        - django-private-key
     ports:
       - 8000:8000
     depends_on:
