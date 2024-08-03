@@ -1,0 +1,52 @@
+services:
+  ccbb-backend:
+    build:
+      context: ./Backend
+      secrets:
+        - django-private-key
+    ports:
+      - 8000:8000
+    depends_on:
+      - ccbb-backup
+    restart: always
+    volumes:
+      - db-data:/app/data
+      - static-data:/app/staticfiles
+    labels:
+      - docker-volume-backup.stop-during-backup=true
+
+  ccbb-webserver:
+    build:
+      context: ./WebServer
+    depends_on:
+      - ccbb-backend
+    ports:
+      - 80:80
+      - 443:443
+    restart: always
+    volumes:
+      - static-data:/app/staticfiles
+    secrets:
+      - generated-private-key
+      - generated-public-key
+
+  ccbb-backup:
+    image: offen/docker-volume-backup:v2.40.0
+    restart: always
+    env_file: ./Backup/backup.env
+    volumes:
+      - db-data:/backup/db-backup:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./Backup/archive:/archive
+
+secrets:
+  django-private-key:
+    file: ./django-private-key.txt
+  generated-private-key: # SSL Private Key
+    file: ./nginx-private-key.txt
+  generated-public-key: # SSL Public Cert
+    file: ./generated-public-key.crt
+
+volumes:
+  db-data:
+  static-data:
