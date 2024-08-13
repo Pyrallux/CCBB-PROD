@@ -4,6 +4,8 @@ services:
       context: ./Backend
       secrets:
         - django-private-key
+    env_file:
+      - ./config.env
     ports:
       - 8000:8000
     depends_on:
@@ -20,6 +22,8 @@ services:
   ccbb-webserver:
     build:
       context: ./WebServer
+    env_file:
+      - ./config.env
     depends_on:
       - ccbb-backend
     ports:
@@ -45,9 +49,9 @@ secrets:
   django-private-key:
     file: ./django-private-key.txt
   generated-private-key: # SSL Private Key
-    file: ./nginx-private-key.txt
+    file: ./ssl-private-key.txt
   generated-public-key: # SSL Public Cert
-    file: ./generated-public-key.crt
+    file: ./ssl-public-key.crt
 
 volumes:
   db-data:
