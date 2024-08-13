@@ -30,6 +30,8 @@ RUN --mount=type=cache,target=/root/.cache/pip \
 COPY ./data/db.sqlite3 ./data/db.sqlite3
 COPY . .
 
+ARG DJANGO_APP_URL
+ENV DJANGO_APP_URL $DJANGO_APP_URL
 
 RUN --mount=type=secret,id=django-private-key \
     python manage.py collectstatic
