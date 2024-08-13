@@ -23,7 +23,7 @@ SECRET_KEY = KEY_FILE.read()
 KEY_FILE.close()
 
 # Application Setup Settings
-ALLOWED_HOSTS = [os.environ["SERVER_NAME"]]
+ALLOWED_HOSTS = [os.environ["DJANGO_APP_URL"]]
 
 STATIC_URL = "/static/"
 
