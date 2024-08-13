@@ -5,9 +5,9 @@ services:
       secrets:
         - django-private-key
       args:
-        - DJANGO_APP_URL: https://cyclecount.app
+        DJANGO_APP_URL: https://cyclecount.app
     environment:
-      - DJANGO_APP_URL: https://cyclecount.app
+      DJANGO_APP_URL: https://cyclecount.app
     ports:
       - 8000:8000
     depends_on:
@@ -25,11 +25,11 @@ services:
     build:
       context: ./WebServer
       args:
-        - SERVER_NAME: cyclecount.app
-        - VITE_DATABASE_URL: https://cyclecount.app/db
+        SERVER_NAME: cyclecount.app
+        VITE_DATABASE_URL: https://cyclecount.app/db
     environment:
-      - SERVER_NAME: cyclecount.app
-      - VITE_DATABASE_URL: https://cyclecount.app/db
+      SERVER_NAME: cyclecount.app
+      VITE_DATABASE_URL: https://cyclecount.app/db
     depends_on:
       - ccbb-backend
     ports:
