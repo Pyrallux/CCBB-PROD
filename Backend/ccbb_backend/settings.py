@@ -10,8 +10,10 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
+import os
 from pathlib import Path
 from corsheaders.defaults import default_headers
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,10 +23,7 @@ SECRET_KEY = KEY_FILE.read()
 KEY_FILE.close()
 
 # Application Setup Settings
-ALLOWED_HOSTS = [
-    "localhost",
-    "cyclecount.app",
-]
+ALLOWED_HOSTS = [os.environ["SERVER_NAME"]]
 
 STATIC_URL = "/static/"
 
@@ -73,14 +72,9 @@ SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
 CORS_ALLOW_PRIVATE_NETWORK: True
 
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",
-    "https://balls.webhop.me",
-    "https://count.ddns.net",
-    "https://cyclecount.app",
-]
+CORS_ALLOWED_ORIGINS = [os.environ["DJANGO_APP_URL"]]
 
-CSRF_TRUSTED_ORIGINS = ["https://*.cyclecount.app"]
+CSRF_TRUSTED_ORIGINS = [os.environ["DJANGO_APP_URL"]]
 
 CORS_ALLOW_METHODS = [
     "DELETE",
