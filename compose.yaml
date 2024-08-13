@@ -16,6 +16,8 @@ services:
       - static-data:/app/staticfiles
     labels:
       - docker-volume-backup.stop-during-backup=true
+    secrets:
+      - django-private-key
 
   ccbb-webserver:
     build:
