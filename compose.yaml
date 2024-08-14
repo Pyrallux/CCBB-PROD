@@ -45,9 +45,9 @@ secrets:
   django-private-key:
     file: ./django-private-key.txt
   generated-private-key: # SSL Private Key
-    file: ./nginx-private-key.txt
+    file: ./ssl-private-key.txt
   generated-public-key: # SSL Public Cert
-    file: ./generated-public-key.crt
+    file: ./ssl-public-key.crt
 
 volumes:
   db-data:
