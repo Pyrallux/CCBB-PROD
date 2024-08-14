@@ -4,10 +4,6 @@ services:
       context: ./Backend
       secrets:
         - django-private-key
-      args:
-        DJANGO_APP_URL: https://cyclecount.app
-    environment:
-      DJANGO_APP_URL: https://cyclecount.app
     ports:
       - 8000:8000
     depends_on:
@@ -24,9 +20,6 @@ services:
   ccbb-webserver:
     build:
       context: ./WebServer
-    environment:
-      SERVER_NAME: cyclecount.app
-      VITE_DATABASE_URL: https://cyclecount.app/db
     depends_on:
       - ccbb-backend
     ports:
@@ -52,9 +45,9 @@ secrets:
   django-private-key:
     file: ./django-private-key.txt
   generated-private-key: # SSL Private Key
-    file: ./ssl-private-key.txt
+    file: ./nginx-private-key.txt
   generated-public-key: # SSL Public Cert
-    file: ./ssl-public-key.crt
+    file: ./generated-public-key.crt
 
 volumes:
   db-data:
