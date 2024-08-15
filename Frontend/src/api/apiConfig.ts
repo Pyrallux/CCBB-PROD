@@ -1,0 +1,1 @@
+export const databaseURL = "https://cyclecount.app/db"
