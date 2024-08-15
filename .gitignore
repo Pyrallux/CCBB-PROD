@@ -2,5 +2,5 @@ WebServer/nginx-private-key.txt
 Backend/django-private-key.txt
 Backup/archive/*.tar.gz
 django-private-key.txt
-generated-public-key.crt
-nginx-private-key.txt
+ssl-public-key.crt
+ssl-private-key.txt

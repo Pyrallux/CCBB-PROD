@@ -2,6 +2,6 @@
 
 1. Clone this repository.
 2. Run `docker compose up -d` in the home directory to build the docker container (Prior docker installation is required).
-3. Access the app through a browser at www.cyclecount.app (Authentication is required for access).
+3. Access the app through a browser at cyclecount.app (Authentication is required for access).
 
 NOTE: This is the public production repository for this project, frontend source code is private.
