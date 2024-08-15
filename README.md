@@ -45,7 +45,7 @@ The app is a full-stack web application designed to be used within a `Docker` co
 
 ## Running the Application
 
-1. Clone this repository.'
+1. Clone this repository.
 2. Build the frontend with `npm run build` and place the generated `dist` folder inside the `./WebServer` folder.
 3. Place the proper secret `django-private-key.txt`, `ssl-private-key.txt`, and `ssl-public-key.txt` files in the root of the directory.
 4. Run `docker compose up -d` in the home directory to build the docker container (Prior docker installation is required).
