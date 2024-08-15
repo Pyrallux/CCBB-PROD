@@ -43,6 +43,12 @@ The app is a full-stack web application designed to be used within a `Docker` co
 - Backups are saved to `./Backup/archive` and configuration files for various settings such as the time, frequency, and format of backups can be found in `./Backup/backup.env`. Backups are currently configured to be pruned after 60 days.
 - Information on how to use these backups to restore the database can be found in `./Backup/db-restore.md`.
 
+## Docker Container Info
+
+- The application has been developed to be used inside of a docker container. `Docker-Compose` allows the app to nicely break the application down into 3 interdependant services: WebServer, Backend, and Backup.
+- Each service generates its own image or virtual linux environment that is complete with its own requirements. This top-level configuration can be found in `./compose.yaml`. Additionally, each service has its own `dockerfile` outlining the commands needed to properly install requirements and start the service within the virtual container.
+- `Volumes` are used within the application to link data within the virtual containers with the local filesystem. Plus, Docker `secrets` allow private keys to be used by containers without them needing to be present within the potentially vulnerable virtual image.
+
 ## Running the Application
 
 1. Clone this repository.
